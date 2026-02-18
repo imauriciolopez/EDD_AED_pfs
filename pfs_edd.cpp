@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 }
 */
 
-
+/*
 int main(int argc, char *argv[]){
     //experimento(argv[1], argv[2], 2, true, false);
     //printf("\a");
@@ -286,6 +286,7 @@ int main(int argc, char *argv[]){
     return 0;
 
 }
+*/
 
 /*
 int main(int argc, char *argv[]){
@@ -337,5 +338,9 @@ int main(int argc, char *argv[]){
     fclose(file);
 }*/
 
+int main(int argc, char *argv[]){
+    cout<<"Hello, world!"<<endl;
+    return 0;
+}
 
 

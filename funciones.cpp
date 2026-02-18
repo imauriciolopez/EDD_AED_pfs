@@ -2829,6 +2829,3 @@ void experimento_DDE_RLS(string name, string carpeta, int verbose, bool archivo,
 
     fclose(resumen);
 }
-
-//gatito
-//perrito

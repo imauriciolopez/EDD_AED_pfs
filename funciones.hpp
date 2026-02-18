@@ -13,131 +13,6 @@ using namespace std;
 
 #include <typeinfo>
 
-//funciones que no pertenecen a ninguna clase}
-/*
-template <typename T> void juntar(vector<T>& arr, int izq, int med, int der){
-    //medimos los tamaños de los subarrays
-    int n1=med-izq+1;
-    int n2=der-med;
-    
-    //creamos 2 vectores para que almacenen el subarray derecho e izquierdo
-    vector<T> arr1(n1), arr2(n2);
-    
-    //los copiamos
-    for(int i=0;i<n1;i++) arr1[i]=arr[izq+i];
-    for(int j=0;j<n2;j++) arr2[j]=arr[med+1+j];
-    
-    //declaramos e inicializamos los índices
-    int i=0, j=0, k=izq; 
-    
-    //juntamos los vectores temporales
-    while(i<n1&&j<n2){
-        if(arr1[i]<=arr2[j]){
-            arr[k]=arr1[i];
-            i++;
-        } 
-        else{
-            arr[k]=arr2[j];
-            j++;
-        }
-        k++;
-    }
-    
-    //copiamos lo que resta de arr1 en arr, si es que sobra algo
-    while(i<n1){
-        arr[k]=arr1[i];
-        i++;
-        k++;
-    }
-    
-    //copiamos lo que resta de arr2 en arr, si es que sobra algo
-    while(j<n2){
-        arr[k]=arr2[j];
-        j++;
-        k++;
-    }
-}
-
-//key nos dice si queremos que regrese el vector ordenado, o los índices ordenados del vector original, independientemente del valor que tenga key
-//ejemplo:
-//b_u_merge_sort({1, 3, 2}) -> {1, 2, 3} (regresa el vector ordenado)
-//                             ┌-----┐
-//b_u_merge_sort({1, 3, 2}, key=true ) -> {0, 2, 1} (regresa los índices ordenados para "ordenar" el vector)
-//b_u_merge_sort({1, 3, 2}, key=false) -> {0, 2, 1}
-
-//                                                                 false=pequeño->grande, true=grande->pequeño
-template <typename T> vector<T> b_u_merge_sort(vector<T> arr, bool orden=false){
-    vector<T> arr_c=arr;
-
-    int n=arr_c.size();
-    
-    //iteramos sobre subarrays de tamaños cada vez mas grandes (el doble de grandes)
-    //       ┌tamaño actual
-    //       |          ┌hasta que tenga el tamaño del vector a ordenar 
-    //       |          |                      ┌duplicamos el tamaño y seguimos
-    for (int t_actual=1;t_actual<=n-1;t_actual=2*t_actual){
-
-        //       ┌empezamos con la izquerda
-        //                 ┌hasta que tenga el tamaño del vector a ordenar
-        //                          ┌vamos a ir de 2 en 2 tamaños, seleccionandolos para juntar
-        for (int izq=0;izq<n-1;izq+=2*t_actual){
-
-            //elegimos puntos de inicio diferentes para izq y der
-            int med=min(izq+t_actual-1, n-1);
-            int der=min(izq+2*t_actual-1, n-1);
-            
-            //juntamos los vectores
-            juntar<T>(arr_c, izq, med, der);
-        }
-    }
-    
-    if(orden){
-        vector<T> arr_c_v;
-        for(int i=0;i<arr_c.size();i++) arr_c_v.insert(arr_c_v.begin(), arr_c[i]);
-        return arr_c_v;
-    }
-    else{
-        return arr_c;
-    }
-}
-
-template <typename T> vector<int> b_u_merge_sort(vector<T> &arr, bool key, bool orden_){
-    unordered_map<T,int> pos;
-    vector<T> arr_c=b_u_merge_sort<T>(arr, orden_);
-
-    int n=arr.size();
-
-    //Guardamos posiciones de v2
-    for (int i=0;i<n;i++) pos[arr_c[i]]=i;
-
-    //Construimos el orden de arr en arr_c
-    vector<int> orden(n);
-    for(int i=0;i<n;i++) orden[i]=pos[arr[i]];
-
-    return orden;
-}
-
-template <typename T> vector<vector<T> > b_u_merge_sort(vector<vector<T> > m, int pos=0, bool orden=false, bool verbose=false){
-    vector<T> v;
-    for(int i=0;i<m.size();i++) v.push_back(m[i][pos]);
-    vector<T> r=b_u_merge_sort(v, orden, false);
-    vector<vector<T> > res;
-    for(int i=0;i<r.size();i++){
-        res.push_back(m[r[i]]);
-    }
-    if(orden){
-        vector<vector<T> > arr_c_v;
-        for(int i=0;i<res.size();i++) arr_c_v.insert(arr_c_v.begin(), res[i]);
-        return arr_c_v;
-    }
-    else{
-        return res;
-    }
-}
-
-vector<struct ind*> struct_merge_sort(vector<struct ind*>& arr, const string& atributo);
-*/
-
 
 //funciones que no pertenecen a ninguna clase
 template <typename T> void juntar(vector<T>& arr, int izq, int med, int der){
@@ -422,13 +297,6 @@ template <typename T> int ruleta(vector<T> v){
     return 0;
 }
 
-/*
-int factorial(int n){
-    int res=1;
-    for(int i=2;i<n+1;i++) res*=i;
-    return res;
-}
-*/
 template <typename T> vector<vector<T>> combinatoria(vector<T> v){
     //casos base
     if(v.size()==2) return vector<vector<T> >{{v[0], v[1]}, {v[1], v[0]}};
@@ -514,6 +382,92 @@ template <typename T> T promedio(vector<vector<T> > v){
 
 
 void experimento(string name, string carpeta, int verbose, bool archivo=true, bool verbose_=false);
+
+struct ind{
+    //representación clásica de individuo de pfs
+    int n_jobs;
+    vector<int> jobs;
+
+    int makespan;
+
+    //representación del paper MORAIS
+    vector<double> posiciones;
+
+    //factores de auto regulación
+    double f;
+    double c_r;
+
+    //valores para DSEDA pfs2
+    vector<double> c_r_{0.0, 0.0, 0.0, 0.0};
+
+    ind(vector<double>posiciones_=vector<double>{}, vector<int>jobs_=vector<int>{}, int makespan_=0, double f_=0, double c_r_=0):n_jobs(posiciones_.size()){
+        posiciones=posiciones_;
+        jobs=jobs_;
+        makespan=makespan_;
+        f=f_;
+        c_r=c_r_;
+        n_jobs=posiciones_.size();
+    }
+
+    ind(int n_jobs_):n_jobs(n_jobs_){
+        n_jobs=n_jobs_;
+        posiciones=vector<double>(n_jobs, 0.0);
+        jobs=vector<int>(n_jobs, 0);
+        makespan=0;
+        f=0.0;
+        c_r=0.0;
+    }
+    
+    ind operator+(const struct ind& a)const{
+        struct ind c(*this);
+        for(int i=0;i<n_jobs;i++){
+            c.posiciones[i]+=a.posiciones[i];
+        }
+        return c;
+    }
+
+    ind operator-(const struct ind& a)const{
+        struct ind c(*this);
+        for(int i=0;i<n_jobs;i++){
+            c.posiciones[i]-=a.posiciones[i];
+        }
+        return c;
+    }
+
+    ind operator*(double a){
+        struct ind c(*this);
+        for(int i=0;i<n_jobs;i++){
+            c.posiciones[i]*=a;
+        }
+        return c;
+    }
+
+    /*
+    ind* operator-(struct ind* a){
+        struct ind *c(this);
+        c->posiciones=vector<double>(n_jobs);
+        for(int i=0;i<n_jobs;i++) c->posiciones[i]=posiciones[i]-a->posiciones[i];
+        return c;
+    }
+
+    ind* operator*(double a){
+        struct ind *c(this);
+        c->posiciones=vector<double>(n_jobs);
+        for(int i=0;i<n_jobs;i++) c->posiciones[i]=posiciones[i]*a;
+        return c;
+    }*/
+
+    bool operator<(const ind* a){
+        return a->makespan>makespan;
+    }
+
+    bool operator>(const ind* a){
+        return a->makespan<makespan;
+    }
+    
+    ~ind(){}
+};
+
 
 //clases
 class pfs{
@@ -1031,90 +985,6 @@ public:
     vector<int> RLS(vector<int> ind, vector<int> ref, int d, int iter, int n_iters, bool verbose=false);
 };
 
-struct ind{
-    //representación clásica de individuo de pfs
-    int n_jobs;
-    vector<int> jobs;
-
-    int makespan;
-
-    //representación del paper MORAIS
-    vector<double> posiciones;
-
-    //factores de auto regulación
-    double f;
-    double c_r;
-
-    //valores para DSEDA pfs2
-    vector<double> c_r_{0.0, 0.0, 0.0, 0.0};
-
-    ind(vector<double>posiciones_=vector<double>{}, vector<int>jobs_=vector<int>{}, int makespan_=0, double f_=0, double c_r_=0):n_jobs(posiciones_.size()){
-        posiciones=posiciones_;
-        jobs=jobs_;
-        makespan=makespan_;
-        f=f_;
-        c_r=c_r_;
-        n_jobs=posiciones_.size();
-    }
-
-    ind(int n_jobs_):n_jobs(n_jobs_){
-        n_jobs=n_jobs_;
-        posiciones=vector<double>(n_jobs, 0.0);
-        jobs=vector<int>(n_jobs, 0);
-        makespan=0;
-        f=0.0;
-        c_r=0.0;
-    }
-    
-    ind operator+(const struct ind& a)const{
-        struct ind c(*this);
-        for(int i=0;i<n_jobs;i++){
-            c.posiciones[i]+=a.posiciones[i];
-        }
-        return c;
-    }
-
-    ind operator-(const struct ind& a)const{
-        struct ind c(*this);
-        for(int i=0;i<n_jobs;i++){
-            c.posiciones[i]-=a.posiciones[i];
-        }
-        return c;
-    }
-
-    ind operator*(double a){
-        struct ind c(*this);
-        for(int i=0;i<n_jobs;i++){
-            c.posiciones[i]*=a;
-        }
-        return c;
-    }
-
-    /*
-    ind* operator-(struct ind* a){
-        struct ind *c(this);
-        c->posiciones=vector<double>(n_jobs);
-        for(int i=0;i<n_jobs;i++) c->posiciones[i]=posiciones[i]-a->posiciones[i];
-        return c;
-    }
-
-    ind* operator*(double a){
-        struct ind *c(this);
-        c->posiciones=vector<double>(n_jobs);
-        for(int i=0;i<n_jobs;i++) c->posiciones[i]=posiciones[i]*a;
-        return c;
-    }*/
-
-    bool operator<(const ind* a){
-        return a->makespan>makespan;
-    }
-
-    bool operator>(const ind* a){
-        return a->makespan<makespan;
-    }
-    
-    ~ind(){}
-};
 
 class pfs_morais: public pfs{
 public:

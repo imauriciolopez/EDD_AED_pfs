@@ -1,0 +1,92 @@
+# Carpetas de resultados
+Copia de res_2/
+Copia de res_1/
+Copia de graficas_corrida_1/
+Copia de graficas_corrida_2/
+graficas_corrida_1/
+graficas_corrida_2/
+res_1/
+res_2/
+resultados_preliminares_5feb/
+resultados_preliminares_4feb/
+res_2_30_1_26_11_59/
+res_1_30_1_26_11_59/
+res/
+res_2_30_1_26_3_37/
+res_1_30_1_26_3_37/
+res_28_1_26_4_13/
+res_26_1_25_12_22/
+res_26_1_26_10_11/
+res_20_12_25_2_27/
+res_16_12_25_7_48/
+res_13_12_25_7_23/
+res_16_12_25_5_03/
+res_14_12_25_2_56/
+res_13_12_25_2_29/
+res_29_11_15_2_54/
+res_25_11_25_3_127/
+res_29_11_25_2_54/
+
+# archivos basura
+main
+a.out
+graficas_corrida_2.zip
+graficas_corrida_1.zip
+funciones_estandar_2.ipynb
+error_handler.txt
+exp_10000_0.100000_0.500000_clasica_0.500000.txt
+lista_de_archivos.txt
+edd_python_.py
+kkck7000.txt
+kkck700aadasdasd.txt
+experimentos.txt
+slurm_script_Projects_Type1
+exp_0.txt
+slurm_sc
+instances
+res_exp_p_cr
+analisis.ipynb
+graficas_poster.ipynb
+
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# debug information files
+*.dwo

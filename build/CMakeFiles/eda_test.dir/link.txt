@@ -1,0 +1,1 @@
+/opt/homebrew/bin/g++-15  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/eda_test.dir/main/eda_test.cpp.o -o eda_test  libpfsp_libs.a libpfsp_libs.a /opt/homebrew/Cellar/gcc/15.1.0/lib/gcc/current/libgomp.dylib

@@ -1,0 +1,1 @@
+/opt/homebrew/bin/g++-15  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/pfs_test.dir/main/pfs_test.cpp.o -o pfs_test  libpfsp_libs.a libpfsp_libs.a /opt/homebrew/Cellar/gcc/15.1.0/lib/gcc/current/libgomp.dylib

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpfsp_libs.a CMakeFiles/pfsp_libs.dir/src/morais.cpp.o CMakeFiles/pfsp_libs.dir/src/eda.cpp.o CMakeFiles/pfsp_libs.dir/src/edd.cpp.o CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o
+/usr/bin/ranlib libpfsp_libs.a

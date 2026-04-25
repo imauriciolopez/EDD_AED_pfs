@@ -154,7 +154,6 @@ int pfs_edd::evolucion_diferencial_discreta(int n_iters,
     
     for(int iter_=0;iter_<n_iters;iter_++){
         for(int specimen=0;specimen<n_inds;specimen++){
-
             vector<int> w_1;
             //cout<<"CRUZA"<<endl;
             if(cruza!="SHADE"){
@@ -273,6 +272,14 @@ vector<int> pfs_edd::DestructConstruct(vector<int> ind, int d, bool verbose){
 
     //los ordenamos
     d_pos=b_u_merge_sort<int>(d_pos);
+
+    if(verbose){
+        cout<<"D POS: ";
+        for(int i=0;i<d;i++){
+            cout<<d_pos[i]<<", ";
+        }
+        cout<<endl;
+    }
     
     int count=0;
     for(auto a:d_pos){
@@ -280,9 +287,21 @@ vector<int> pfs_edd::DestructConstruct(vector<int> ind, int d, bool verbose){
         ind_.erase(ind_.begin()+a-count++);
     }
 
+    if(verbose){
+        cout<<"D ELEMS: ";
+        for(int i=0;i<d_elems.size();i++){
+            cout<<d_elems[i]<<", ";
+        }
+        cout<<endl;
+        cout<<"IND_: ";
+        for(int i=0;i<ind_.size();i++){
+            cout<<ind_[i]<<", ";
+        }
+        cout<<endl;
+    }
+
     //insertamos los d elementos de manera greedy
     int mk, i, j, mejor_makespan=1000000, mejor_pos=0, n;
-    vector<int> mejor_secuencia(n_jobs);
     
     //reinsertamos de manera greedy los elementos eliminados
     for(i=0;i<d;i++){
@@ -333,16 +352,41 @@ vector<int> pfs_edd::RIS(vector<int> ind, vector<int> ref, bool verbose){
     int pos_ref=0, i, mejor_makespan=1000000, mk;
     
     while(no_mejoras<n_jobs||no_mejoras<50){
+        if(verbose){
+            cout<<"ITER: "<<no_mejoras<<endl;
+            cout<<"IND_PI_1 PREV: ";
+            for(auto a:ind_pi_1){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+        }
+        
+        
         //eliminar el elemento h-ésimo de ref en ind y precalcular el makespan
-        for(i=0;i<n_jobs;i++) 
+        for(i=0;i<n_jobs;i++){
             if(ind[i]==ref[(pos)%n_jobs]){
                 pos_ref=i;
                 break;
             }
+        }
             
+        if(verbose){
+            cout<<"ELEMENTO A ELIMINAR: "<<ind[pos_ref]<<endl;
+            cout<<"IND VIEJO: ";
+            for(auto a:ind){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+        }
         ind.erase(ind.begin()+pos_ref);
+        if(verbose){
+            cout<<"IND NUEVO: ";
+            for(auto a:ind){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+        }
 
-        vector<int> mejor_sec(n_jobs);
         vector<vector<int> > c_prev=this->makespan_incremental(ind);
 
         //determinar la mejor posición para el trabajo eliminado
@@ -350,29 +394,53 @@ vector<int> pfs_edd::RIS(vector<int> ind, vector<int> ref, bool verbose){
         for(i=0;i<ind.size()+1;i++){
             //CHECAR ESTO TAMBIEN
             mk=this->makespan_incremental(ind, ref[(pos)%n_jobs], i, c_prev);
-
             if(mk<mejor_makespan){
                 mejor_pos=i;
                 mejor_makespan=mk;
             }
         }
 
+        if(verbose) cout<<"MEJOR MK: "<<mejor_makespan<<", MEJOR POS: "<<mejor_pos<<endl;
+
         //agregar el trabajo eliminado
         vector<int> ind_c(n_jobs);
 
         for(i=0;i<mejor_pos;i++) ind_c[i]=ind[i];
         ind_c[mejor_pos]=ref[(pos++)%n_jobs];
+
         for(i=mejor_pos;i<n_jobs-1;i++) ind_c[i+1]=ind[i];
-
-
+        
+        if(verbose){
+            cout<<"IND ELEMENTO AGREGADO: ";
+            for(auto a:ind_c){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+        }
         
         if(mejor_makespan<mkspn_actual){
+            if(verbose){
+                cout<<"MEJOR, "<<ind.size()<<endl;
+                cout<<"IGUAL A: ";
+                for(auto a:ind_c){
+                    cout<<a<<", ";
+                }
+                cout<<endl;
+            }
 
             ind=ind_c;
             mkspn_actual=mejor_makespan;
             no_mejoras=0;
         }
         else{
+            if(verbose){
+                cout<<"PEOR, "<<ind.size()<<endl;
+                cout<<"IGUAL A: ";
+                for(auto a:ind_pi_1){
+                    cout<<a<<", ";
+                }
+                cout<<endl;
+            }
 
             ind=ind_pi_1;
             no_mejoras++;
@@ -381,6 +449,26 @@ vector<int> pfs_edd::RIS(vector<int> ind, vector<int> ref, bool verbose){
         ind_pi_1=ind_c;
 
         mejor_makespan=1000000;
+
+        if(verbose){
+            cout<<"MK ACTUAL: "<<mkspn_actual<<"\nIND ACTUAL: ";
+            for(auto a:ind){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+            cout<<"IND_PI_1: ";
+            for(auto a:ind_pi_1){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+            cout<<"IND_C: ";
+            for(auto a:ind_c){
+                cout<<a<<", ";
+            }
+            cout<<endl;
+
+            cout<<"------"<<endl;
+        }
     }
 
     ind.push_back(makespan(ind));
@@ -390,8 +478,8 @@ vector<int> pfs_edd::RIS(vector<int> ind, vector<int> ref, bool verbose){
 
 vector<int> pfs_edd::RLS(vector<int> ind, vector<int> ref, int d, int iter, int n_iters, bool verbose){
     if(n_jobs<101){
-        vector<int> pi=this->DestructConstruct(ind, d);
-        vector<int> pi_1=this->RIS(pi, ref);
+        vector<int> pi=this->DestructConstruct(ind, d, verbose);
+        vector<int> pi_1=this->RIS(pi, ref, verbose);
         
 
         if(verbose){
@@ -415,7 +503,7 @@ vector<int> pfs_edd::RLS(vector<int> ind, vector<int> ref, int d, int iter, int 
             return pi;
         }
     }
-    else return this->DestructConstruct(ind, d);
+    else return this->DestructConstruct(ind, d, verbose);
 }
 
 void experimento(string name, string carpeta, int verbose, bool archivo, bool verbose_){
@@ -608,3 +696,164 @@ void experimento(string name, string carpeta, int verbose, bool archivo, bool ve
 
     fclose(resumen);
 }
+
+
+/*
+vector<int> pfs_edd::DestructConstruct(vector<int> ind, int d, int n_jobs, bool verbose){
+    //eliminamos d elementos
+    vector<int> d_pos_=this->permutacion_aleatoria();
+    vector<int> d_pos(d), ind_(n_jobs), d_elems(d);
+
+    //hacemos una copia de ind
+    copy(ind.begin(), ind.end()-1, ind_.begin());
+    //copiamos los primeros d elementos de una permutación aleatoria
+    copy(d_pos_.begin(), d_pos_.begin()+d, d_pos.begin());
+
+    //los ordenamos
+    d_pos=b_u_merge_sort<int>(d_pos);
+    
+    int count=0;
+    for(auto a:d_pos){
+        d_elems[count]=ind_[a-count];
+        ind_.erase(ind_.begin()+a-count++);
+    }
+
+    //insertamos los d elementos de manera greedy
+    int mk, i, j, mejor_makespan=1000000, mejor_pos=0, n;
+    vector<int> mejor_secuencia(n_jobs);
+    
+    //reinsertamos de manera greedy los elementos eliminados
+    for(i=0;i<d;i++){
+        n=ind_.size();
+
+        vector<vector<int> > c_prev=this->makespan_incremental(ind_);
+
+        for(j=0;j<n+1;j++){
+            mk=this->makespan_incremental(ind_, d_elems[i], j, c_prev);
+
+            if(mk<mejor_makespan){
+                mejor_pos=j;
+                mejor_makespan=mk;
+            }
+        }
+        
+        vector<int> ind_c(n+1);
+   
+        for(j=0;j<mejor_pos;j++){
+            ind_c[j]=ind_[j];
+        }
+        
+        ind_c[mejor_pos]=d_elems[i];
+        for(j=mejor_pos;j<n;j++){
+            ind_c[j+1]=ind_[j];
+        }
+
+        ind_=ind_c;
+
+        mejor_makespan=1000000;
+    }
+    
+    //cout<<endl;
+    ind_.push_back(makespan(ind_));
+
+    return ind_;
+}
+
+vector<int> pfs_edd::RIS(vector<int> ind, vector<int> ref, int n_jobs, bool verbose){
+    //gurdamos el makespan actual
+    int mkspn_actual=ind[n_jobs];
+    ind.pop_back();
+
+    int no_mejoras=0, pos=0;
+    vector<int> ind_pi_1(n_jobs);
+    copy(ind.begin(), ind.end(), ind_pi_1.begin());
+
+    int pos_ref=0, i, mejor_makespan=1000000, mk;
+    
+    while(no_mejoras<n_jobs||no_mejoras<50){
+        //eliminar el elemento h-ésimo de ref en ind y precalcular el makespan
+        for(i=0;i<n_jobs;i++) 
+            if(ind[i]==ref[(pos)%n_jobs]){
+                pos_ref=i;
+                break;
+            }
+            
+        ind.erase(ind.begin()+pos_ref);
+
+        vector<int> mejor_sec(n_jobs);
+        vector<vector<int> > c_prev=this->makespan_incremental(ind);
+
+        //determinar la mejor posición para el trabajo eliminado
+        int mejor_pos=0;
+        for(i=0;i<ind.size()+1;i++){
+            //CHECAR ESTO TAMBIEN
+            mk=this->makespan_incremental(ind, ref[(pos)%n_jobs], i, c_prev);
+
+            if(mk<mejor_makespan){
+                mejor_pos=i;
+                mejor_makespan=mk;
+            }
+        }
+
+        //agregar el trabajo eliminado
+        vector<int> ind_c(n_jobs);
+
+        for(i=0;i<mejor_pos;i++) ind_c[i]=ind[i];
+        ind_c[mejor_pos]=ref[(pos++)%n_jobs];
+        for(i=mejor_pos;i<n_jobs-1;i++) ind_c[i+1]=ind[i];
+
+
+        
+        if(mejor_makespan<mkspn_actual){
+
+            ind=ind_c;
+            mkspn_actual=mejor_makespan;
+            no_mejoras=0;
+        }
+        else{
+
+            ind=ind_pi_1;
+            no_mejoras++;
+        }
+
+        ind_pi_1=ind_c;
+
+        mejor_makespan=1000000;
+    }
+
+    ind.push_back(makespan(ind));
+
+    return ind;
+}
+
+vector<int> pfs_edd::RLS(vector<int> ind, vector<int> ref, int n_jobs, int d, int iter, int n_iters, bool verbose){
+    if(n_jobs<101){
+        vector<int> pi=this->DestructConstruct(ind, d);
+        vector<int> pi_1=this->RIS(pi, ref);
+        
+
+        if(verbose){
+            cout<<"PI   - ";
+            if(!this->valido(pi)) cout<<" MAL ";
+            for(auto a:pi) cout<<a<<", ";
+            cout<<endl;
+            cout<<"PI_1 - ";
+            if(!this->valido(pi_1)) cout<<" MAL ";
+            for(auto a:pi_1) cout<<a<<", ";
+            cout<<"\n"<<endl;
+        }
+
+        //if(pi_1[n_jobs]<pi[n_jobs]||rand_dbl(rndm)<this->temperatura(iter, 4.0/n_iters)){
+
+
+        if(pi_1[n_jobs]<pi[n_jobs]){
+            return pi_1;
+        }
+        else{
+            return pi;
+        }
+    }
+    else return this->DestructConstruct(ind, d);
+}
+
+*/

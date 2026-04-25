@@ -13,6 +13,7 @@ add_library(pfsp_libs
     src/eda.cpp
     src/edd.cpp
     src/pfs.cpp
+    src/pbeda.cpp
 )
 
 # Crear ejecutable
@@ -22,6 +23,7 @@ add_executable(pfs_test main/pfs_test.cpp)
 add_executable(edd_test main/edd_test.cpp)
 add_executable(eda_test main/eda_test.cpp)
 add_executable(morais_test main/morais_test.cpp)
+add_executable(pbeda_test main/pbeda_test.cpp)
 
 
 
@@ -31,6 +33,7 @@ target_link_libraries(pfs_test pfsp_libs)
 target_link_libraries(edd_test pfsp_libs)
 target_link_libraries(eda_test pfsp_libs)
 target_link_libraries(morais_test pfsp_libs)
+target_link_libraries(pbeda_test pfsp_libs)
 
 target_link_libraries(main_exec
     pfsp_libs
@@ -50,6 +53,10 @@ target_link_libraries(eda_test
     OpenMP::OpenMP_CXX
 )
 target_link_libraries(morais_test
+    pfsp_libs
+    OpenMP::OpenMP_CXX
+)
+target_link_libraries(pbeda_test
     pfsp_libs
     OpenMP::OpenMP_CXX
 )

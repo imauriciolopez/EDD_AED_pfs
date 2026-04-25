@@ -1,8 +1,8 @@
 number of jobs, number of machines, initial seed, upper bound and lower bound :
           5           5   873654221        1278        1232
 processing times :
-6  7  8  9  10
-11 12 13 14 15
-21 22 23 24 25
-1  2  3  4  5
-16 17 18 19 20
+1228 934  721  1615 393
+962  1299 568  1742 1633
+578  392  1981 45   1710
+1296 1745 583  312  1642
+10   1721 1025 106  646

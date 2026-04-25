@@ -128,12 +128,27 @@ CMakeFiles/pfsp_libs.dir/src/pfs.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pfsp_libs.dir/src/pfs.cpp.s"
 	/opt/homebrew/bin/g++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/src/pfs.cpp" -o CMakeFiles/pfsp_libs.dir/src/pfs.cpp.s
 
+CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o: CMakeFiles/pfsp_libs.dir/flags.make
+CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o: /Users/imauriciolopez/Google\ Drive/Mi\ unidad/TESIS/eed_python/src/pbeda.cpp
+CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o: CMakeFiles/pfsp_libs.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o"
+	/opt/homebrew/bin/g++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o -MF CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o.d -o CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o -c "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/src/pbeda.cpp"
+
+CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.i"
+	/opt/homebrew/bin/g++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/src/pbeda.cpp" > CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.i
+
+CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.s"
+	/opt/homebrew/bin/g++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/src/pbeda.cpp" -o CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.s
+
 # Object files for target pfsp_libs
 pfsp_libs_OBJECTS = \
 "CMakeFiles/pfsp_libs.dir/src/morais.cpp.o" \
 "CMakeFiles/pfsp_libs.dir/src/eda.cpp.o" \
 "CMakeFiles/pfsp_libs.dir/src/edd.cpp.o" \
-"CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o"
+"CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o" \
+"CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o"
 
 # External object files for target pfsp_libs
 pfsp_libs_EXTERNAL_OBJECTS =
@@ -142,9 +157,10 @@ libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/src/morais.cpp.o
 libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/src/eda.cpp.o
 libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/src/edd.cpp.o
 libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o
+libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o
 libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/build.make
 libpfsp_libs.a: CMakeFiles/pfsp_libs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libpfsp_libs.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libpfsp_libs.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/pfsp_libs.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pfsp_libs.dir/link.txt --verbose=$(VERBOSE)
 

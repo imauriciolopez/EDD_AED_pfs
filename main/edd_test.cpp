@@ -31,8 +31,8 @@ int main(int argc, char *argv[]){
                                 26040, 26500, 26371, 26456, 26334, 26469, 26389, 26560, 26005, 26457};
 
     
-    int inst=10;
-    int n_inds=10;
+    int inst=-2;
+    int n_inds=20;
     double porcentaje_NEH=0.75;
     int n_iters=10;
     double mu=0.7;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
     string cruza="SHADE";
     int verbose=2;
     double p=0.8;
-    int d=18;
+    int d=3;
     int reemps=2;
 
     pfs_edd a(n_inds);
@@ -68,7 +68,6 @@ int main(int argc, char *argv[]){
         }
     }
 
-
     a.generar_poblacion_aleatoria();
 
     vector<double> promedios, desvest, diff_prom, diff_desvest;
@@ -76,6 +75,19 @@ int main(int argc, char *argv[]){
 
     int mejor;
 
+    a.ver_poblacion();
+
+    vector<int> ind_1{3, 4, 0, 1, 2, 14129};
+    vector<int> ind_2{2, 1, 4, 3, 0, 9557};
+
+    vector<int> ind_3=a.RLS(ind_1, ind_2, d, 1, 1, false);
+
+    cout<<"------------\n"<<endl;
+    for(auto b:ind_3){
+        cout<<b<<", ";
+    }
+
+    /*
     int mej__=a.evolucion_diferencial_discreta(n_iters,
                                                mu,
                                                c_r,
@@ -114,9 +126,6 @@ int main(int argc, char *argv[]){
         printf("%lf ", diff_desvest[i]);
     }
 
-    return 0;
+    return 0;*/
 }
-
-
-
 

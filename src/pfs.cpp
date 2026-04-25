@@ -614,16 +614,6 @@ int pfs::makespan_incremental(vector<int>& perm, int job, int pos, vector<vector
         }
     }
     
-    //regresamos el ultimo valor
-    /*
-    for(auto a:c_){
-        for(auto b:a){
-            cout<<b<<", ";
-        }
-        cout<<endl;
-    }
-    cout<<c_[c_.size()-1][c_[0].size()-1]<<endl;*/
-
     return c_[c_.size()-1][c_[0].size()-1];
 }
 

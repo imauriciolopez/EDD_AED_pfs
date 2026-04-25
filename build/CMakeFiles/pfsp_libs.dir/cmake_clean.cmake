@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/pfsp_libs.dir/src/edd.cpp.o.d"
   "CMakeFiles/pfsp_libs.dir/src/morais.cpp.o"
   "CMakeFiles/pfsp_libs.dir/src/morais.cpp.o.d"
+  "CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o"
+  "CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o.d"
   "CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o"
   "CMakeFiles/pfsp_libs.dir/src/pfs.cpp.o.d"
   "libpfsp_libs.a"

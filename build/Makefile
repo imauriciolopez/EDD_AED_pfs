@@ -194,6 +194,19 @@ morais_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/morais_test.dir/build.make CMakeFiles/morais_test.dir/build
 .PHONY : morais_test/fast
 
+#=============================================================================
+# Target rules for targets named pbeda_test
+
+# Build rule for target.
+pbeda_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pbeda_test
+.PHONY : pbeda_test
+
+# fast build rule for target.
+pbeda_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pbeda_test.dir/build.make CMakeFiles/pbeda_test.dir/build
+.PHONY : pbeda_test/fast
+
 main/eda_test.o: main/eda_test.cpp.o
 .PHONY : main/eda_test.o
 
@@ -265,6 +278,30 @@ main/morais_test.s: main/morais_test.cpp.s
 main/morais_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/morais_test.dir/build.make CMakeFiles/morais_test.dir/main/morais_test.cpp.s
 .PHONY : main/morais_test.cpp.s
+
+main/pbeda_test.o: main/pbeda_test.cpp.o
+.PHONY : main/pbeda_test.o
+
+# target to build an object file
+main/pbeda_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pbeda_test.dir/build.make CMakeFiles/pbeda_test.dir/main/pbeda_test.cpp.o
+.PHONY : main/pbeda_test.cpp.o
+
+main/pbeda_test.i: main/pbeda_test.cpp.i
+.PHONY : main/pbeda_test.i
+
+# target to preprocess a source file
+main/pbeda_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pbeda_test.dir/build.make CMakeFiles/pbeda_test.dir/main/pbeda_test.cpp.i
+.PHONY : main/pbeda_test.cpp.i
+
+main/pbeda_test.s: main/pbeda_test.cpp.s
+.PHONY : main/pbeda_test.s
+
+# target to generate assembly for a file
+main/pbeda_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pbeda_test.dir/build.make CMakeFiles/pbeda_test.dir/main/pbeda_test.cpp.s
+.PHONY : main/pbeda_test.cpp.s
 
 main/pfs_edd.o: main/pfs_edd.cpp.o
 .PHONY : main/pfs_edd.o
@@ -386,6 +423,30 @@ src/morais.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pfsp_libs.dir/build.make CMakeFiles/pfsp_libs.dir/src/morais.cpp.s
 .PHONY : src/morais.cpp.s
 
+src/pbeda.o: src/pbeda.cpp.o
+.PHONY : src/pbeda.o
+
+# target to build an object file
+src/pbeda.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pfsp_libs.dir/build.make CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.o
+.PHONY : src/pbeda.cpp.o
+
+src/pbeda.i: src/pbeda.cpp.i
+.PHONY : src/pbeda.i
+
+# target to preprocess a source file
+src/pbeda.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pfsp_libs.dir/build.make CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.i
+.PHONY : src/pbeda.cpp.i
+
+src/pbeda.s: src/pbeda.cpp.s
+.PHONY : src/pbeda.s
+
+# target to generate assembly for a file
+src/pbeda.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pfsp_libs.dir/build.make CMakeFiles/pfsp_libs.dir/src/pbeda.cpp.s
+.PHONY : src/pbeda.cpp.s
+
 src/pfs.o: src/pfs.cpp.o
 .PHONY : src/pfs.o
 
@@ -422,6 +483,7 @@ help:
 	@echo "... edd_test"
 	@echo "... main_exec"
 	@echo "... morais_test"
+	@echo "... pbeda_test"
 	@echo "... pfs_test"
 	@echo "... pfsp_libs"
 	@echo "... main/eda_test.o"
@@ -433,6 +495,9 @@ help:
 	@echo "... main/morais_test.o"
 	@echo "... main/morais_test.i"
 	@echo "... main/morais_test.s"
+	@echo "... main/pbeda_test.o"
+	@echo "... main/pbeda_test.i"
+	@echo "... main/pbeda_test.s"
 	@echo "... main/pfs_edd.o"
 	@echo "... main/pfs_edd.i"
 	@echo "... main/pfs_edd.s"
@@ -448,6 +513,9 @@ help:
 	@echo "... src/morais.o"
 	@echo "... src/morais.i"
 	@echo "... src/morais.s"
+	@echo "... src/pbeda.o"
+	@echo "... src/pbeda.i"
+	@echo "... src/pbeda.s"
 	@echo "... src/pfs.o"
 	@echo "... src/pfs.i"
 	@echo "... src/pfs.s"

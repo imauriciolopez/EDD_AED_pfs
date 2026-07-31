@@ -1,0 +1,141 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "OpenMP::OpenMP_C::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-OpenMP__OpenMP_C-7ab48102239bf0356072.json",
+					"name" : "OpenMP::OpenMP_C",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "OpenMP::OpenMP_CXX::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-OpenMP__OpenMP_CXX-16c35e589f76f7c6ce46.json",
+					"name" : "OpenMP::OpenMP_CXX",
+					"projectIndex" : 0
+				}
+			],
+			"directories" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1
+					],
+					"build" : ".",
+					"jsonFile" : "directory-.-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PFSP",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "eda_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-eda_test-c2970b6fd94411dae6b3.json",
+					"name" : "eda_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "edd_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-edd_test-9fd6747616bcd48372a4.json",
+					"name" : "edd_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main_exec::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main_exec-b667fa376414c6514a8d.json",
+					"name" : "main_exec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "morais_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-morais_test-e7bea80657014d12a1a7.json",
+					"name" : "morais_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pbeda_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pbeda_test-844a01ec388498d1d817.json",
+					"name" : "pbeda_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pfs_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pfs_test-f28d6b2639ffb1ca2115.json",
+					"name" : "pfs_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pfsp_libs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pfsp_libs-e5b1dfe1c1f2cc29acf9.json",
+					"name" : "pfsp_libs",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python/build",
+		"source" : "/Users/imauriciolopez/Google Drive/Mi unidad/TESIS/eed_python"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
